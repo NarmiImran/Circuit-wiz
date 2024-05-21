@@ -1,0 +1,201 @@
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+    }
+
+    .container {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 20px;
+        font-size: large;
+        text-align: center;
+    }
+
+    header {
+        background-color: #333;
+        color: #fff;
+        padding: 20px 0;
+        text-align: center;
+    }
+
+    .menu {
+        background-color: #333;
+        color: white;
+        padding: 0px 0;
+        text-align: center;
+    }
+
+    .menu header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu h1 {
+        margin: 0;
+        font-size: 2em;
+        padding: 0 0;
+    }
+
+    .menu a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        display: inline-block;
+        margin: 5px 0;
+        transition: background-color 0.3s, color 0.3s;
+        border-radius: 5px;
+        font-size: large;
+    }
+
+    .menu a:hover {
+        background-color: #575757;
+        color: #f0f0f0;
+    }
+
+    @media (min-width: 600px) {
+        .menu header {
+            flex-direction: row;
+            justify-content: space-around;
+        }
+
+        .menu h1 {
+            flex: 1;
+            text-align: left;
+            margin-left: 20px;
+        }
+
+        .menu a {
+            margin: 0 10px;
+        }
+    }
+
+    p {
+        font-size: 1.1em;
+    }
+
+    .ImageContainer {
+        max-width: 300px;
+        border: 0px solid #333;
+        overflow: hidden;
+        padding: 0px 0px 0px 0px;
+        margin: 30px 0px 0px 115px;
+        float: left;
+
+    }
+
+    a {
+        color: #353935;
+    }
+
+    .imageName {
+        margin: 0px 0px 0px 0px;
+        padding: 0px 0px 0px 0px;
+        font-family: Arial, sans-serif;
+        font-size: 1.3em;
+        font-weight: bolder;
+        text-align: center;
+
+    }
+
+    .image {
+        object-fit: cover;
+    }
+
+    a:hover {
+        background-color: #f0f0f0;
+        color: #333;
+    }
+
+    a:active {
+        color: goldenrod;
+        background-color: green;
+    }
+
+    .imageNameH:hover {
+        background-color: black;
+        text-decoration: none;
+        color: white;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .imageNameH:active {
+        color: goldenrod;
+        background-color: green;
+    }
+
+    .P_detail {
+        font-size: larger;
+        padding: 0px 0px 0px 0px;
+        margin-left: 100px;
+        width: 90%;
+        max-width: 90%;
+    }
+
+    .codebody {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f4f4f4;
+    }
+    
+    .code-container {
+        width: 100%;
+        background-color: #272822;
+        border-radius: 8px;
+        color: #f8f8f2;
+        position: relative; /* Changed from absolute to relative */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        overflow: auto;
+    }
+    
+    .code-container pre {
+        margin: 0;
+        font-size: 18px;
+        line-height: 1.5;
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    
+    .button-container {
+        position: absolute;
+        top: 10px;
+        right: 10px; /* Changed from right: 10px; to left: 10px; */
+        display: flex;
+        gap: 10px;
+        padding: 10px;
+    }
+    
+    .copy-button,
+    .download-button {
+        background-color: #66d9ef;
+        border: none;
+        color: #272822;
+        padding: 10px 20px; /* Adjusted padding for better fit */
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 12px;
+    }
+    
+    .copy-message {
+        position: absolute;
+        top: 25px;
+        right: 200px; /* Changed from right: 70px; to left: 70px; */
+        background-color: #272822;
+        color: #66d9ef;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 12px;
+        display: none;
+    }
+    

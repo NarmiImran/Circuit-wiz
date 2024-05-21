@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arduino Temperature Monitor</title>
+    <link rel="stylesheet" type="text/CSS" href="../../style.css">
+</head>
+
+<body>
+    <div class="menu">
+        <header>
+            <h1>Arduino Temperature Monitor</h1>
+            <a href="../../../index.html">Home</a>
+            <a href="#">Courses</a>
+            <a href="https://www.youtube.com/playlist?list=PLvuTX8j3--_9qfdkFFDmjieaapMKR3VtH">Projects</a>
+            <a href="https://www.youtube.com/@optimist1630">Youtube</a>
+        </header>
+    </div>
+
+
+    <div class="container">
+        <h2>Explore Exciting Projects</h2>
+        <p>Dive into a treasure trove of Arduino projects, each meticulously crafted with detailed explanations,
+            schematics, and ready-to-use code.</p>
+    </div>
+
+    <div class="P_detail">
+        <p style="text-align: center;">Hello Friends! Today, I created a basic Temperature Meter using the
+            TM1637 7 Segment Display and the DHT11 temperature sensor. Follow the next steps to see the schematic, code,
+            and parts list.</p>
+
+        <h2>Step 1</h2>
+        <h3>Components you need.</h3>
+        <ol>
+            <li>Arduino Uno.</li>
+            <li>Tm1637 7-Segment Display.</li>
+            <li>DHT11 Temperature Sensor.</li>
+        </ol>
+
+        <h2>Step 2</h2>
+        <h3>Do Connections.</h3>
+        <ol>
+            <li>Connect Arduino's +5v to TM1637's +5v and DHT11's + pin.</li>
+            <li>Connect Arduino's Ground to TM1637's Ground and DHT11's Ground pin.</li>
+            <li>Connect TM1637's clk pin to Arduino's digital pin 7.</li>
+            <li>Connect TM1637's dio pin to Arduino's digital pin 8.</li>
+            <li>Connect DHT11's out pin to Arduino's digital pin 2.</li>
+        </ol>
+
+        <h2>Step 3</h2>
+        <h3>Connect Arduino To Your Computer.</h3>
+        <ol>
+            <li>Make sure to connect your Arduino properly to your computer and select the correct port and Arduino
+                board in your development environment.</li>
+        </ol>
+
+        <h2>Step 4</h2>
+        <h3>Download the code, open it in Arduino Ide, Upload and Enjoy! </h3>
+        <h2>Video Tutorial</h2>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/N66GtEotHFs?si=1ek6Qb3z-XTf3olO"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay ; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <h2>Diagram</h2>
+        <a href="../../Images/Arduino project 1 daigram.jpg"><img width="560" height="315"
+                src="../../Images/Arduino project 1 daigram.jpg" alt="Arduino Temprature Monitor Diagram"></a>
+        <h2>Code</h2>
+        <div class="codebody code-container">
+            <div class="button-container">
+                <button class="copy-button" onclick="copyCode()">Copy</button>
+                <button class="download-button" onclick="downloadCode('BlinkCode.ino')">Download </button>
+            </div>
+            <div id="copyMessage" class="copy-message">Code copied to clipboard!</div>
+            <pre id="code">
+#include <DHT.h> // Include the DHT library to handle the temperature and humidity sensor
+#include <TM1637Display.h> // Include the TM1637Display library to control the 7-segment display
+
+#define DHTPIN 2 // Define the pin where the DHT11 sensor is connected
+#define DHTTYPE DHT11 // Define the type of DHT sensor being used (DHT11)
+
+DHT dht(DHTPIN, DHTTYPE); // Create a DHT object using the defined pin and sensor type
+TM1637Display display(7, 8); // Create a TM1637Display object using pins 7 and 8 for the clock and data lines
+
+void setup() {
+  Serial.begin(9600); // Initialize serial communication at a baud rate of 9600
+  dht.begin(); // Initialize the DHT sensor
+  display.setBrightness(7); // Set the brightness of the 7-segment display (range is 0 to 7)
+}
+
+void loop() {
+  float temperature = dht.readTemperature(); // Read the temperature in Celsius from the DHT sensor
+  if (!isnan(temperature)) { // Check if the reading is valid (not NaN)
+    int integerPart = (int)temperature; // Get the integer part of the temperature
+    int decimalPart = (int)(temperature * 10) % 10; // Get the first decimal digit of the temperature
+    display.showNumberDecEx(integerPart * 100 + decimalPart, 0b01000000, true); // Display the temperature on the 7-segment display with a decimal point    
+  }
+  delay(500); // Wait for 500 milliseconds before taking another reading
+}
+
+            </pre>
+        </div>
+<p></p>
+        <script>
+            function copyCode() {
+                var code = document.getElementById('code').innerText;
+                var textarea = document.createElement('textarea');
+                textarea.value = code;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                var message = document.getElementById('copyMessage');
+                message.style.display = 'inline';
+                setTimeout(function () {
+                    message.style.display = 'none';
+                }, 2000);
+            }
+
+            function downloadCode(filename) {
+                var code = document.getElementById('code').innerText;
+                var blob = new Blob([code], { type: 'text/plain' });
+                var link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = filename;
+                link.click();
+                URL.revokeObjectURL(link.href);
+            }
+        </script>
+
+    </div>
+</body>
+
+</html>
